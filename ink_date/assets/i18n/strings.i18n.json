@@ -1,0 +1,17 @@
+{
+    "hello": "Hello $name",
+    "confirm": "Confirmar",
+    "login": {
+      "success": "Logged in successfully",
+      "fail": "Logged in failed"
+    },
+    "environment": "Ink Date $environment $version",
+    "profile": {
+      "upload_profile_picture": "Subir foto de perfil"
+    },
+    "sign_up": {
+      "admin": {
+
+      }
+    }
+  }

@@ -1,22 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-void main() => runApp(const MyApp());
+import "gen/strings.g.dart";
+import "main/app.dart";
+import "main/app_env.dart";
+import "main/observers.dart";
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+void main() => mainCommon(AppEnvironment.PROD);
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Material App',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Material App Bar'),
-        ),
-        body: const Center(
-          child: Text('Hello World'),
-        ),
-      ),
-    );
-  }
+Future<void> mainCommon(final AppEnvironment environment) async {
+  WidgetsFlutterBinding.ensureInitialized();
+  LocaleSettings.useDeviceLocale();
+  EnvInfo.initialize(environment);
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle.light.copyWith(
+      statusBarColor: Colors.black,
+      statusBarBrightness: Brightness.light,
+    ),
+  );
+  runApp(TranslationProvider(
+    child: ProviderScope(
+      observers: [
+        Observers(),
+      ],
+      child: const InkDateApp(),
+    ),
+  ),);
 }
