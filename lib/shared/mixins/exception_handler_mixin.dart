@@ -15,8 +15,8 @@ mixin ExceptionHandlerMixin on NetworkService {
     final String endpoint = '',
   }) async {
     try {
-      final Response res = await handler();
-      return Right(
+      final Response<dynamic> res = await handler();
+      return Right<AppException, AppResponse>(
         AppResponse(
           statusCode: res.statusCode ?? 200,
           data: res.data,
@@ -46,7 +46,7 @@ mixin ExceptionHandlerMixin on NetworkService {
           statusCode = 2;
           identifier = 'Unknown error $e\n at $endpoint';
       }
-      return Left(
+      return Left<AppException, AppResponse>(
         AppException(
           message: message,
           statusCode: statusCode,

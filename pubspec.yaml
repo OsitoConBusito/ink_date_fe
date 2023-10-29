@@ -11,10 +11,10 @@ dependencies:
   cached_network_image: ^3.3.0
   camera: ^0.10.5+4
   connectivity_plus: ^4.0.2
-  cupertino_icons: ^1.0.2
   dartz: ^0.10.1
   dio: ^5.3.2
   equatable: ^2.0.5
+  firebase_messaging: ^14.7.2
   flutter:
     sdk: flutter
   flutter_localizations:
@@ -26,7 +26,6 @@ dependencies:
   image_picker: ^1.0.4
   lottie: ^2.6.0
   riverpod: ^2.4.0
-  secure_storage_local_storage_inspector: ^0.7.0
   shared_preferences: ^2.2.1
   slang: ^3.23.0
   slang_flutter: ^3.23.0

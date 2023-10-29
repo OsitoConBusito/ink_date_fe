@@ -4,7 +4,6 @@ import 'package:equatable/equatable.dart';
 import '../models/response.dart';
 
 class AppException implements Exception {
-
   AppException({
     required this.message,
     required this.statusCode,
@@ -14,7 +13,8 @@ class AppException implements Exception {
   final int? statusCode;
   final String? identifier;
   @override
-  String toString() => 'statusCode=$statusCode\nmessage=$message\nidentifier=$identifier';
+  String toString() =>
+      'statusCode=$statusCode\nmessage=$message\nidentifier=$identifier';
 }
 
 class CacheFailureException extends Equatable implements AppException {
@@ -28,7 +28,7 @@ class CacheFailureException extends Equatable implements AppException {
   int? get statusCode => 100;
 
   @override
-  List<Object?> get props => [message, statusCode, identifier];
+  List<Object?> get props => <Object?>[message, statusCode, identifier];
 }
 
 //  extension

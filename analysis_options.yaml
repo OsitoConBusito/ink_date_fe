@@ -65,7 +65,6 @@ linter:
     - combinators_ordering
     - comment_references
     - conditional_uri_does_not_exist
-    - constant_identifier_names
     - control_flow_in_finally
     - curly_braces_in_flow_control_structures
     - depend_on_referenced_packages

@@ -7,7 +7,7 @@ import 'main/app.dart';
 import 'main/app_env.dart';
 import 'main/observers.dart';
 
-void main() => mainCommon(AppEnvironment.PROD);
+void main() async => mainCommon(AppEnvironment.PROD);
 
 Future<void> mainCommon(final AppEnvironment environment) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,12 +19,14 @@ Future<void> mainCommon(final AppEnvironment environment) async {
       statusBarBrightness: Brightness.light,
     ),
   );
-  runApp(TranslationProvider(
-    child: ProviderScope(
-      observers: [
-        Observers(),
-      ],
-      child: const InkDateApp(),
+  runApp(
+    TranslationProvider(
+      child: ProviderScope(
+        observers: <Observers>[
+          Observers(),
+        ],
+        child: const InkDateApp(),
+      ),
     ),
-  ),);
+  );
 }

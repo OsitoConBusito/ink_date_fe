@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../shared/exceptions/app_exception.dart';
@@ -16,10 +17,12 @@ class SignUpViewModel extends StateNotifier<SignUpState> {
   Future<void> signUp(Profile profile) async {
     state = state.copyWith(signUpStatus: SignUpStatus.loading);
 
+    final String? fcmToken = await FirebaseMessaging.instance.getToken();
+
     final Either<AppException, SignUpResponseDto> signUpResponse =
         await _authenticationRepository.signUp(
       SignUpRequestDto(
-        deviceId: deviceId,
+        deviceId: fcmToken!,
         email: state.email,
         fullName: state.fullName,
         password: state.password,

@@ -1,12 +1,17 @@
-const int PER_PAGE_LIMIT = 20;
+const int perPageLimit = 20;
 
 class PaginatedResponse<T> {
+  PaginatedResponse({
+    required this.total,
+    required this.skip,
+    required this.data,
+  });
 
-  PaginatedResponse(
-      {required this.total, required this.skip, required this.data,});
-
-  factory PaginatedResponse.fromJson(final json, final List<T> data) =>
-      PaginatedResponse(
+  factory PaginatedResponse.fromJson(
+    final Map<String, dynamic> json,
+    final List<T> data,
+  ) =>
+      PaginatedResponse<T>(
         total: json['total'] ?? 0,
         skip: json['skip'] ?? 0,
         data: data,
@@ -15,9 +20,10 @@ class PaginatedResponse<T> {
 
   final int skip;
 
-  static const int limit = PER_PAGE_LIMIT;
+  static const int limit = perPageLimit;
 
   final List<T> data;
   @override
-  String toString() => 'PaginatedResponse(total:$total, skip:$skip, data:${data.length})';
+  String toString() =>
+      'PaginatedResponse(total:$total, skip:$skip, data:${data.length})';
 }

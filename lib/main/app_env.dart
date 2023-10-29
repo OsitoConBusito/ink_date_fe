@@ -16,19 +16,24 @@ abstract class EnvInfo {
 }
 
 extension _EnvProperties on AppEnvironment {
-  static const Map<AppEnvironment, String> _appTitles = {
+  static const Map<AppEnvironment, String> _appTitles =
+      <AppEnvironment, String>{
     AppEnvironment.DEV: 'Ink Date Dev',
     AppEnvironment.STAGING: 'Ink Date Staging',
     AppEnvironment.PROD: 'Ink Date',
   };
 
-  static const Map<AppEnvironment, String> _connectionStrings = {
-    AppEnvironment.DEV: 'https://api.spoonacular.com',
-    AppEnvironment.STAGING: 'https://api.spoonacular.com',
-    AppEnvironment.PROD: 'https://api.spoonacular.com',
+  static const Map<AppEnvironment, String> _connectionStrings =
+      <AppEnvironment, String>{
+    AppEnvironment.DEV:
+        'https://a06ijzmrvb.execute-api.us-east-1.amazonaws.com/dev/',
+    AppEnvironment.STAGING:
+        'https://a06ijzmrvb.execute-api.us-east-1.amazonaws.com/dev/',
+    AppEnvironment.PROD:
+        'https://a06ijzmrvb.execute-api.us-east-1.amazonaws.com/dev/',
   };
 
-  static const Map<AppEnvironment, String> _envs = {
+  static const Map<AppEnvironment, String> _envs = <AppEnvironment, String>{
     AppEnvironment.DEV: 'dev',
     AppEnvironment.STAGING: 'staging',
     AppEnvironment.PROD: 'prod',

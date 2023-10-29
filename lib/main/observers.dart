@@ -18,7 +18,10 @@ class Observers extends ProviderObserver {
   }
 
   @override
-  void didDisposeProvider(final ProviderBase provider, final ProviderContainer container) {
+  void didDisposeProvider(
+    final ProviderBase provider,
+    final ProviderContainer container,
+  ) {
     log('''
 {
   "provider": "${provider.name ?? provider.runtimeType}",

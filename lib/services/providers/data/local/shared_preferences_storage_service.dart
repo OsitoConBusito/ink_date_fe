@@ -39,7 +39,7 @@ class SharedPrefsService implements StorageService {
   @override
   Future<bool> remove(final String key) async {
     sharedPreferences = await initCompleter.future;
-    return await sharedPreferences!.remove(key);
+    return sharedPreferences!.remove(key);
   }
 
   @override

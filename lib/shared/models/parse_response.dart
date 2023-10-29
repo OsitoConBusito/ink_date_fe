@@ -6,8 +6,7 @@ class ParseResponse<T> {
     this.success = false,
   });
 
-  factory ParseResponse.fromMap(
-    final json,) =>
+  factory ParseResponse.fromMap(final Map<String, dynamic> json) =>
       ParseResponse<T>(
         success: json['status'] == 'success',
         status: json['status'],

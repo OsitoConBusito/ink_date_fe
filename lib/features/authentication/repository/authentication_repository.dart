@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../configs/app_configs.dart';
+import '../../../main/app_env.dart';
 import '../../../shared/exceptions/app_exception.dart';
 import '../models/login_request_dto.dart';
 import '../models/login_response_dto.dart';
@@ -22,7 +23,7 @@ class AuthenticationRepository {
   ) async {
     try {
       final Response<dynamic> response = await _dio.post(
-        '${AppConfigs.baseUrl}${AppConfigs.login}',
+        '${EnvInfo.connectionString}${RouteUrls.login}',
         data: loginRequestDto.toJson(),
       );
 
@@ -46,7 +47,7 @@ class AuthenticationRepository {
   ) async {
     try {
       final Response<dynamic> response =
-          await _dio.post('${AppConfigs.baseUrl}${AppConfigs.signUp}');
+          await _dio.post('${EnvInfo.connectionString}${RouteUrls.signUp}');
 
       final SignUpResponseDto signUpRequestDto =
           SignUpResponseDto.fromJson(response.data);
