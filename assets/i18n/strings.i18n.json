@@ -1,17 +1,37 @@
 {
-    "hello": "Hello $name",
-    "confirm": "Confirmar",
-    "login": {
-      "success": "Logged in successfully",
-      "fail": "Logged in failed"
-    },
-    "environment": "Ink Date $environment $version",
-    "profile": {
-      "upload_profile_picture": "Subir foto de perfil"
-    },
-    "sign_up": {
-      "admin": {
-
-      }
+  "email": "Correo electrónico",
+  "mandatory_field": "Campo obligatorio",
+  "not_valid_email": "E-mail no válido",
+  "password": "Contraseña",
+  "confirm": "Confirmar",
+  "tattooist": "Tatuador",
+  "admin": "Administrador",
+  "cancel": "Cancelar",
+  "environment": "Ink Date $environment $version",
+  "profile": {
+    "upload_profile_picture": "Subir foto de perfil"
+  },
+  "sign_up": {
+    "sign_up": "Registrarse",
+    "sign_up_as": "Regístrarte como:",
+    "hint_full_name": "Aquí tu nombre completo",
+    "full_name": "Nombre completo",
+    "verify_password": "Verificar contraseña",
+    "have_an_account": "¿Ya tienes una cuenta?",
+    "admin": {
+      "hint_studio_email": "tu_estudio@gmail.com",
+      "studio_email": "Email del estudio asociado",
+      "places": "Espacios",
+      "hint_studio_name": "Estudio Best",
+      "studio_name": "Nombre del estudio",
+      "sign_up_as_admin": "Regístrate como administrador"
     }
+  },
+  "login": {
+    "login": "Iniciar sesión",
+    "hint_email": "tuemail@email.com",
+    "hint_password": "******",
+    "recover_password": "Recuperar contraseña",
+    "error": "Email o contraseña incorrectos"
   }
+}

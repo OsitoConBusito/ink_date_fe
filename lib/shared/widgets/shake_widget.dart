@@ -26,13 +26,16 @@ class _ShakeWidgetState extends State<ShakeWidget>
   @override
   void initState() {
     super.initState();
-    AnimationController(vsync: this, duration: widget.shakeDuration);
+    animationController =
+        AnimationController(vsync: this, duration: widget.shakeDuration);
     animationController.addStatusListener(_updateStatus);
   }
 
   @override
   void dispose() {
-    animationController.removeStatusListener(_updateStatus);
+    animationController
+      ..removeStatusListener(_updateStatus)
+      ..dispose();
     super.dispose();
   }
 
@@ -51,8 +54,8 @@ class _ShakeWidgetState extends State<ShakeWidget>
         animation: animationController,
         child: widget.child,
         builder: (
-          final context,
-          final child,
+          final BuildContext context,
+          final Widget? child,
         ) =>
             Transform.translate(
           offset: Offset(

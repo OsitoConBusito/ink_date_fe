@@ -7,9 +7,9 @@ class LoadingScreen extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => Scaffold(
-      backgroundColor: Colors.transparent,
-      body: Center(
-        child: Image.asset(AppAnimations.loader),
-      ),
-    );
+        backgroundColor: Colors.transparent.withOpacity(0.5),
+        body: Center(
+          child: Image.asset(AppAnimations.loader),
+        ),
+      );
 }

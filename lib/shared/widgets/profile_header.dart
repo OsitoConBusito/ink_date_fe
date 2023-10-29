@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:ink_date/gen/strings.g.dart';
-import 'package:ink_date/shared/widgets/person_icon.dart';
 
+import '../../gen/strings.g.dart';
 import '../../theme/theme.dart';
+import 'person_icon.dart';
 
 class ProfileHeader extends StatelessWidget {
   const ProfileHeader({
@@ -40,7 +40,7 @@ class ProfileHeader extends StatelessWidget {
                     ? IconSize.large * 9.0
                     : IconSize.large - 10.0,
               ),
-              const SizedBox(height: Spacing.small),
+              const SizedBox(height: Sizes.small),
               Text(
                 t.profile.upload_profile_picture,
                 style: const TextStyle(

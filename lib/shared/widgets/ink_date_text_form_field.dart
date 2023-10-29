@@ -16,6 +16,7 @@ class InkDateTextFormField extends StatefulWidget {
     this.textCapitalization = TextCapitalization.none,
     this.textInputAction = TextInputAction.done,
     this.validator,
+    this.onChanged,
   });
 
   final double height;
@@ -29,6 +30,7 @@ class InkDateTextFormField extends StatefulWidget {
   final TextEditingController textEditingController;
   final TextInputAction textInputAction;
   final String? Function(String?)? validator;
+  final void Function(String)? onChanged;
 
   @override
   State<InkDateTextFormField> createState() => _InkDateTextFormFieldState();
@@ -49,6 +51,7 @@ class _InkDateTextFormFieldState extends State<InkDateTextFormField> {
           textCapitalization: widget.textCapitalization,
           textInputAction: widget.textInputAction,
           validator: widget.validator,
+          onChanged: widget.onChanged,
         ),
       );
 
@@ -59,8 +62,8 @@ class _InkDateTextFormFieldState extends State<InkDateTextFormField> {
           ),
         ),
         contentPadding: const EdgeInsets.symmetric(
-          vertical: Spacing.large,
-          horizontal: Spacing.large,
+          vertical: Sizes.large,
+          horizontal: Sizes.large,
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(50),

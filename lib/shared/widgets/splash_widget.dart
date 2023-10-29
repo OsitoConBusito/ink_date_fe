@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ink_date/gen/strings.g.dart';
 import 'package:lottie/lottie.dart';
 
+import '../../gen/strings.g.dart';
 import '../../theme/theme.dart';
 
 class SplashWidget extends StatelessWidget {
@@ -42,7 +42,7 @@ class SplashWidget extends StatelessWidget {
               child: Lottie.asset(AppAnimations.splashAnimation),
             ),
             Positioned(
-              bottom: Spacing.large,
+              bottom: Sizes.large,
               child: _buildEnvironmetTag(context),
             ),
           ],

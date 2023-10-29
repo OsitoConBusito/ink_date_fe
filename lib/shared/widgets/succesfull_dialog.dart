@@ -35,12 +35,12 @@ class SuccessfullDialog extends StatelessWidget {
               children: <Widget>[
                 Container(
                   padding: const EdgeInsets.all(
-                    Spacing.medium,
+                    Sizes.medium,
                   ),
                   child: Column(
                     children: <Widget>[
                       const SizedBox(
-                        height: Spacing.xLarge + Spacing.medium,
+                        height: Sizes.xLarge + Sizes.medium,
                       ),
                       Text(
                         title,
@@ -50,7 +50,7 @@ class SuccessfullDialog extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(
-                        height: Spacing.medium,
+                        height: Sizes.medium,
                       ),
                       Text(
                         message,
@@ -60,7 +60,7 @@ class SuccessfullDialog extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(
-                        height: Spacing.medium,
+                        height: Sizes.medium,
                       ),
                       InkDateElevatedButton(
                         text: t.confirm,
@@ -68,7 +68,7 @@ class SuccessfullDialog extends StatelessWidget {
                         onTap: onTap,
                       ),
                       const SizedBox(
-                        height: Spacing.medium,
+                        height: Sizes.medium,
                       ),
                     ],
                   ),

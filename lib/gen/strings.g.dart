@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 6
+/// Strings: 27
 ///
-/// Built on 2023-10-04 at 07:00 UTC
+/// Built on 2023-10-09 at 06:47 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -149,23 +149,18 @@ class _StringsEn implements BaseTranslations<AppLocale, _StringsEn> {
 	late final _StringsEn _root = this; // ignore: unused_field
 
 	// Translations
-	String hello({required Object name}) => 'Hello ${name}';
+	String get email => 'Correo electrónico';
+	String get mandatory_field => 'Campo obligatorio';
+	String get not_valid_email => 'E-mail no válido';
+	String get password => 'Contraseña';
 	String get confirm => 'Confirmar';
-	late final _StringsLoginEn login = _StringsLoginEn._(_root);
+	String get tattooist => 'Tatuador';
+	String get admin => 'Administrador';
+	String get cancel => 'Cancelar';
 	String environment({required Object environment, required Object version}) => 'Ink Date ${environment} ${version}';
 	late final _StringsProfileEn profile = _StringsProfileEn._(_root);
 	late final _StringsSignUpEn sign_up = _StringsSignUpEn._(_root);
-}
-
-// Path: login
-class _StringsLoginEn {
-	_StringsLoginEn._(this._root);
-
-	final _StringsEn _root; // ignore: unused_field
-
-	// Translations
-	String get success => 'Logged in successfully';
-	String get fail => 'Logged in failed';
+	late final _StringsLoginEn login = _StringsLoginEn._(_root);
 }
 
 // Path: profile
@@ -185,7 +180,27 @@ class _StringsSignUpEn {
 	final _StringsEn _root; // ignore: unused_field
 
 	// Translations
+	String get sign_up => 'Registrarse';
+	String get sign_up_as => 'Regístrarte como:';
+	String get hint_full_name => 'Aquí tu nombre completo';
+	String get full_name => 'Nombre completo';
+	String get verify_password => 'Verificar contraseña';
+	String get have_an_account => '¿Ya tienes una cuenta?';
 	late final _StringsSignUpAdminEn admin = _StringsSignUpAdminEn._(_root);
+}
+
+// Path: login
+class _StringsLoginEn {
+	_StringsLoginEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	String get login => 'Iniciar sesión';
+	String get hint_email => 'tuemail@email.com';
+	String get hint_password => '******';
+	String get recover_password => 'Recuperar contraseña';
+	String get error => 'Email o contraseña incorrectos';
 }
 
 // Path: sign_up.admin
@@ -195,6 +210,12 @@ class _StringsSignUpAdminEn {
 	final _StringsEn _root; // ignore: unused_field
 
 	// Translations
+	String get hint_studio_email => 'tu_estudio@gmail.com';
+	String get studio_email => 'Email del estudio asociado';
+	String get places => 'Espacios';
+	String get hint_studio_name => 'Estudio Best';
+	String get studio_name => 'Nombre del estudio';
+	String get sign_up_as_admin => 'Regístrate como administrador';
 }
 
 /// Flat map(s) containing all translations.
@@ -203,12 +224,33 @@ class _StringsSignUpAdminEn {
 extension on _StringsEn {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
-			case 'hello': return ({required Object name}) => 'Hello ${name}';
+			case 'email': return 'Correo electrónico';
+			case 'mandatory_field': return 'Campo obligatorio';
+			case 'not_valid_email': return 'E-mail no válido';
+			case 'password': return 'Contraseña';
 			case 'confirm': return 'Confirmar';
-			case 'login.success': return 'Logged in successfully';
-			case 'login.fail': return 'Logged in failed';
+			case 'tattooist': return 'Tatuador';
+			case 'admin': return 'Administrador';
+			case 'cancel': return 'Cancelar';
 			case 'environment': return ({required Object environment, required Object version}) => 'Ink Date ${environment} ${version}';
 			case 'profile.upload_profile_picture': return 'Subir foto de perfil';
+			case 'sign_up.sign_up': return 'Registrarse';
+			case 'sign_up.sign_up_as': return 'Regístrarte como:';
+			case 'sign_up.hint_full_name': return 'Aquí tu nombre completo';
+			case 'sign_up.full_name': return 'Nombre completo';
+			case 'sign_up.verify_password': return 'Verificar contraseña';
+			case 'sign_up.have_an_account': return '¿Ya tienes una cuenta?';
+			case 'sign_up.admin.hint_studio_email': return 'tu_estudio@gmail.com';
+			case 'sign_up.admin.studio_email': return 'Email del estudio asociado';
+			case 'sign_up.admin.places': return 'Espacios';
+			case 'sign_up.admin.hint_studio_name': return 'Estudio Best';
+			case 'sign_up.admin.studio_name': return 'Nombre del estudio';
+			case 'sign_up.admin.sign_up_as_admin': return 'Regístrate como administrador';
+			case 'login.login': return 'Iniciar sesión';
+			case 'login.hint_email': return 'tuemail@email.com';
+			case 'login.hint_password': return '******';
+			case 'login.recover_password': return 'Recuperar contraseña';
+			case 'login.error': return 'Email o contraseña incorrectos';
 			default: return null;
 		}
 	}

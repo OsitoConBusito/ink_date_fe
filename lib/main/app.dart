@@ -12,7 +12,7 @@ class InkDateApp extends ConsumerWidget {
 
   @override
   Widget build(final BuildContext context, final WidgetRef ref) {
-    final themeMode = ref.watch(appThemeProvider);
+    final ThemeMode themeMode = ref.watch(appThemeProvider);
     return MaterialApp.router(
       routerConfig: appRouter,
       title: 'Ink Date',

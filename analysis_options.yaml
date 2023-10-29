@@ -16,7 +16,6 @@ linter:
     - always_put_required_named_parameters_first
     - always_require_non_null_named_parameters
     - always_specify_types
-    
     - annotate_overrides
     - avoid_annotating_with_dynamic
     - avoid_bool_literals_in_conditional_expressions
@@ -133,7 +132,6 @@ linter:
     - prefer_final_fields
     - prefer_final_in_for_each
     - prefer_final_locals
-    - prefer_final_parameters
     - prefer_for_elements_to_map_fromIterable
     - prefer_foreach
     - prefer_function_declarations_over_variables

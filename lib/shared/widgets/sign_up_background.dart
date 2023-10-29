@@ -6,10 +6,12 @@ import '../../theme/theme.dart';
 class SignUpBackground extends StatelessWidget {
   const SignUpBackground({
     required this.width,
+    required this.child,
     super.key,
   });
 
   final double width;
+  final Widget child;
 
   @override
   Widget build(final BuildContext context) => Stack(
@@ -23,6 +25,7 @@ class SignUpBackground extends StatelessWidget {
               color: AppColors.backgroundIcon,
             ),
           ),
+          child,
         ],
       );
 }
