@@ -1,11 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
-
-import '../../../../gen/strings.g.dart';
-import '../../../../routes/app_router.dart';
-import '../../../../shared/widgets/sign_up_background.dart';
-import '../../../../theme/theme.dart';
+part of com.features.authentication.sign_up.screens;
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({
@@ -46,9 +39,7 @@ class SignUpScreen extends StatelessWidget {
                     ),
                     Spacing.verticalMedium,
                     InkWell(
-                      onTap: () async => context.pushNamed(
-                        signUpAdminRoute,
-                      ),
+                      onTap: () async => context.pushNamed(signUpAdminRoute),
                       child: Container(
                         width: selectorWidth,
                         padding: const EdgeInsets.all(Sizes.medium),

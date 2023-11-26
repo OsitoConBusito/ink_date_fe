@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 27
+/// Strings: 41
 ///
-/// Built on 2023-10-09 at 06:47 UTC
+/// Built on 2023-11-26 at 16:46 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -186,7 +186,19 @@ class _StringsSignUpEn {
 	String get full_name => 'Nombre completo';
 	String get verify_password => 'Verificar contraseña';
 	String get have_an_account => '¿Ya tienes una cuenta?';
+	String get not_matched_password => 'Las contraseñas no coinciden';
+	String get not_valid_password => 'La contraseña debe tener al menos una mayúscula, un número, un símbolo y al menos 8 caracteres';
+	String get code_sent => 'Te hemos enviado un código de confirmación a tu correo electrónico';
+	String get type_code => 'Ingresa el código aquí';
+	String get resend_code => 'Reenviar';
+	String get code => 'Código';
+	String get code_hint => '123456';
+	String get code_not_sent => '¿No recibiste el código?';
+	String get success_sign_up => '¡Hemos registrado tu correo exitosamente!';
+	String get succes_resend_code => '';
+	String get success_sign_up_description => 'Te invitamos a acceder a tu aplicación Ink Date a través de tu correo registrado';
 	late final _StringsSignUpAdminEn admin = _StringsSignUpAdminEn._(_root);
+	late final _StringsSignUpTattooistEn tattooist = _StringsSignUpTattooistEn._(_root);
 }
 
 // Path: login
@@ -216,6 +228,18 @@ class _StringsSignUpAdminEn {
 	String get hint_studio_name => 'Estudio Best';
 	String get studio_name => 'Nombre del estudio';
 	String get sign_up_as_admin => 'Regístrate como administrador';
+	String get error => 'Ocurrió un error en el registro por favor intentalo de nuevo';
+	String get error_code => 'Código incorrecto';
+}
+
+// Path: sign_up.tattooist
+class _StringsSignUpTattooistEn {
+	_StringsSignUpTattooistEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	String get sign_up_as_tattooist => 'Regístrate como tatuador';
 }
 
 /// Flat map(s) containing all translations.
@@ -240,12 +264,26 @@ extension on _StringsEn {
 			case 'sign_up.full_name': return 'Nombre completo';
 			case 'sign_up.verify_password': return 'Verificar contraseña';
 			case 'sign_up.have_an_account': return '¿Ya tienes una cuenta?';
+			case 'sign_up.not_matched_password': return 'Las contraseñas no coinciden';
+			case 'sign_up.not_valid_password': return 'La contraseña debe tener al menos una mayúscula, un número, un símbolo y al menos 8 caracteres';
+			case 'sign_up.code_sent': return 'Te hemos enviado un código de confirmación a tu correo electrónico';
+			case 'sign_up.type_code': return 'Ingresa el código aquí';
+			case 'sign_up.resend_code': return 'Reenviar';
+			case 'sign_up.code': return 'Código';
+			case 'sign_up.code_hint': return '123456';
+			case 'sign_up.code_not_sent': return '¿No recibiste el código?';
+			case 'sign_up.success_sign_up': return '¡Hemos registrado tu correo exitosamente!';
+			case 'sign_up.succes_resend_code': return '';
+			case 'sign_up.success_sign_up_description': return 'Te invitamos a acceder a tu aplicación Ink Date a través de tu correo registrado';
 			case 'sign_up.admin.hint_studio_email': return 'tu_estudio@gmail.com';
 			case 'sign_up.admin.studio_email': return 'Email del estudio asociado';
 			case 'sign_up.admin.places': return 'Espacios';
 			case 'sign_up.admin.hint_studio_name': return 'Estudio Best';
 			case 'sign_up.admin.studio_name': return 'Nombre del estudio';
 			case 'sign_up.admin.sign_up_as_admin': return 'Regístrate como administrador';
+			case 'sign_up.admin.error': return 'Ocurrió un error en el registro por favor intentalo de nuevo';
+			case 'sign_up.admin.error_code': return 'Código incorrecto';
+			case 'sign_up.tattooist.sign_up_as_tattooist': return 'Regístrate como tatuador';
 			case 'login.login': return 'Iniciar sesión';
 			case 'login.hint_email': return 'tuemail@email.com';
 			case 'login.hint_password': return '******';

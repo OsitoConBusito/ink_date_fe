@@ -1,33 +1,22 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+part of com.features.authentication.sign_up.screens;
 
-import '../../../../gen/strings.g.dart';
-import '../../../../shared/widgets/ink_date_elevated_button.dart';
-import '../../../../shared/widgets/ink_date_text_form_field.dart';
-import '../../../../shared/widgets/number_adder.dart';
-import '../../../../shared/widgets/sign_up_background.dart';
-import '../../../../theme/theme.dart';
-import '../../models/profile.dart';
-import '../provider/sign_up_provider.dart';
-
-class AdminSignUpScreen extends ConsumerStatefulWidget {
-  const AdminSignUpScreen({
+class TattooistSignUpScreen extends ConsumerStatefulWidget {
+  const TattooistSignUpScreen({
     super.key,
   });
 
   @override
-  ConsumerState<AdminSignUpScreen> createState() => _AdminSignUpScreenState();
+  ConsumerState<TattooistSignUpScreen> createState() =>
+      _SignUpTattooistScreenState();
 }
 
-class _AdminSignUpScreenState extends ConsumerState<AdminSignUpScreen> {
-  static const int maxNumberSpaces = 5;
-
+class _SignUpTattooistScreenState extends ConsumerState<TattooistSignUpScreen> {
   late TextEditingController _checkPasswordController;
   late TextEditingController _emailController;
   late GlobalKey<FormState> _formKey;
   late TextEditingController _fullNameController;
   late TextEditingController _passwordController;
-  late TextEditingController _placeNameController;
+  late TextEditingController _studioEmailController;
 
   @override
   void initState() {
@@ -36,7 +25,7 @@ class _AdminSignUpScreenState extends ConsumerState<AdminSignUpScreen> {
     _formKey = GlobalKey<FormState>();
     _fullNameController = TextEditingController(text: '');
     _passwordController = TextEditingController(text: '');
-    _placeNameController = TextEditingController(text: '');
+    _studioEmailController = TextEditingController(text: '');
     super.initState();
   }
 
@@ -46,22 +35,34 @@ class _AdminSignUpScreenState extends ConsumerState<AdminSignUpScreen> {
     _emailController.dispose();
     _fullNameController.dispose();
     _passwordController.dispose();
-    _placeNameController.dispose();
+    _studioEmailController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final NumberAdder numberAdder = NumberAdder(
-      onNumberChanged: (int p0) {},
-      maxNumber: maxNumberSpaces,
+    final SignUpState signUpState = ref.watch(signUpProvider);
+
+    ref.listen(
+      signUpProvider,
+      (SignUpState? previous, SignUpState next) async {
+        if (next.signUpStatus == SignUpStatus.error) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            showInkDateSnackBar(next.errorDescription),
+          );
+        }
+        if (next.signUpStatus == SignUpStatus.success) {
+          ref.read(signUpProvider.notifier).setInitial();
+          context.pushReplacementNamed(confirmEmailRoute);
+        }
+      },
     );
 
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          t.sign_up.admin.sign_up_as_admin,
+          t.sign_up.tattooist.sign_up_as_tattooist,
           style: const TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.w600,
@@ -76,107 +77,95 @@ class _AdminSignUpScreenState extends ConsumerState<AdminSignUpScreen> {
             child: Padding(
               padding: const EdgeInsets.all(Sizes.large),
               child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
                 child: Form(
                   key: _formKey,
                   child: Column(
                     children: <Widget>[
-                      Spacing.verticalMedium,
+                      const SizedBox(height: Sizes.medium),
                       InkDateTextFormField(
                         hintText: t.sign_up.hint_full_name,
                         keyboardType: TextInputType.name,
                         labelText: t.sign_up.full_name,
-                        textCapitalization: TextCapitalization.words,
-                        textInputAction: TextInputAction.next,
                         textEditingController: _fullNameController,
-                        validator: (String? fullName) {},
+                        textInputAction: TextInputAction.next,
+                        validator: (String? fullName) => null,
                       ),
-                      Spacing.verticalMedium,
+                      const SizedBox(height: Sizes.medium),
                       InkDateTextFormField(
                         hintText: t.login.hint_email,
                         keyboardType: TextInputType.emailAddress,
                         labelText: t.email,
-                        textInputAction: TextInputAction.next,
                         textEditingController: _emailController,
-                        validator: (String? email) {},
+                        textInputAction: TextInputAction.next,
+                        validator: (String? email) => null,
                       ),
-                      Spacing.verticalMedium,
+                      const SizedBox(height: Sizes.medium),
                       InkDateTextFormField(
                         hintText: t.login.hint_password,
                         isPassword: true,
                         keyboardType: TextInputType.visiblePassword,
                         labelText: t.password,
-                        textInputAction: TextInputAction.next,
                         textEditingController: _passwordController,
-                        validator: (String? password) {},
+                        textInputAction: TextInputAction.next,
+                        validator: (String? password) => null,
                       ),
-                      Spacing.verticalMedium,
+                      const SizedBox(height: Sizes.medium),
                       InkDateTextFormField(
                         hintText: t.login.hint_password,
                         isPassword: true,
                         keyboardType: TextInputType.visiblePassword,
                         labelText: t.sign_up.verify_password,
-                        textInputAction: TextInputAction.next,
                         textEditingController: _checkPasswordController,
-                        validator: (String? password) {},
-                      ),
-                      Spacing.verticalMedium,
-                      InkDateTextFormField(
-                        hintText: t.sign_up.admin.hint_studio_name,
-                        keyboardType: TextInputType.name,
-                        labelText: t.sign_up.admin.studio_name,
-                        textCapitalization: TextCapitalization.sentences,
                         textInputAction: TextInputAction.next,
-                        textEditingController: _placeNameController,
-                        validator: (String? placeName) {
-                          if (placeName == null || placeName.isEmpty) {
-                            return '';
-                          }
-                          return null;
-                        },
+                        validator: (String? password) => null,
                       ),
-                      Spacing.verticalXLarge,
-                      Row(
-                        children: <Widget>[
-                          const SizedBox(width: Sizes.small),
-                          Expanded(
-                            child: Text(
-                              t.sign_up.admin.places,
-                              style: const TextStyle(fontSize: 22),
-                            ),
-                          ),
-                          const SizedBox(width: Sizes.medium),
-                          numberAdder,
-                        ],
+                      const SizedBox(height: Sizes.medium),
+                      InkDateTextFormField(
+                        hintText: t.sign_up.admin.hint_studio_email,
+                        keyboardType: TextInputType.emailAddress,
+                        labelText: t.sign_up.admin.studio_email,
+                        textEditingController: _studioEmailController,
+                        textInputAction: TextInputAction.next,
+                        validator: (String? studioEmail) => null,
                       ),
-                      Spacing.verticalXLarge,
+                      const SizedBox(height: Sizes.xLarge),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Expanded(
                             child: InkDateElevatedButton(
                               isNegative: true,
                               text: t.cancel,
-                              onTap: () {
-                                Navigator.of(context).pop();
-                              },
+                              onTap: () => Navigator.of(context)
+                                ..pop()
+                                ..pop(),
                             ),
                           ),
                           const SizedBox(width: Sizes.medium),
                           Expanded(
                             child: InkDateElevatedButton(
-                              textColor: AppColors.darkGreen,
                               text: t.confirm,
-                              onTap: () {
+                              textColor: AppColors.darkGreen,
+                              onTap: () async {
                                 if (_formKey.currentState!.validate()) {
-                                  ref
+                                  await ref
                                       .read(signUpProvider.notifier)
-                                      .signUp(Profile.admin);
+                                      .signUp(
+                                        profile: Profile.user,
+                                        email: _emailController.text.trim(),
+                                        fullName:
+                                            _fullNameController.text.trim(),
+                                        password:
+                                            _passwordController.text.trim(),
+                                      );
                                 }
                               },
                             ),
-                          ),
+                          )
                         ],
                       ),
-                      Spacing.verticalXLarge,
+                      const SizedBox(height: Sizes.xLarge),
                       InkDateElevatedButton(
                         text: t.sign_up.have_an_account,
                         textColor: AppColors.darkGreen,
@@ -184,7 +173,7 @@ class _AdminSignUpScreenState extends ConsumerState<AdminSignUpScreen> {
                           ..pop()
                           ..pop(),
                       ),
-                      Spacing.verticalXLarge,
+                      const SizedBox(height: Sizes.xLarge),
                     ],
                   ),
                 ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../theme/theme.dart';
 
@@ -17,6 +18,7 @@ class InkDateTextFormField extends StatefulWidget {
     this.textInputAction = TextInputAction.done,
     this.validator,
     this.onChanged,
+    this.inputFormatters,
   });
 
   final double height;
@@ -31,6 +33,7 @@ class InkDateTextFormField extends StatefulWidget {
   final TextInputAction textInputAction;
   final String? Function(String?)? validator;
   final void Function(String)? onChanged;
+  final List<TextInputFormatter>? inputFormatters;
 
   @override
   State<InkDateTextFormField> createState() => _InkDateTextFormFieldState();
@@ -40,26 +43,24 @@ class _InkDateTextFormFieldState extends State<InkDateTextFormField> {
   bool _isPasswordVisible = false;
 
   @override
-  Widget build(final BuildContext context) => SizedBox(
-        height: widget.height,
-        child: TextFormField(
-          controller: widget.textEditingController,
-          decoration: _inputDecoration(),
-          keyboardType: widget.keyboardType,
-          maxLines: widget.maxLines,
-          obscureText: widget.isPassword && !_isPasswordVisible,
-          textCapitalization: widget.textCapitalization,
-          textInputAction: widget.textInputAction,
-          validator: widget.validator,
-          onChanged: widget.onChanged,
-        ),
+  Widget build(final BuildContext context) => TextFormField(
+        controller: widget.textEditingController,
+        decoration: _inputDecoration(),
+        keyboardType: widget.keyboardType,
+        maxLines: widget.maxLines,
+        obscureText: widget.isPassword && !_isPasswordVisible,
+        textCapitalization: widget.textCapitalization,
+        textInputAction: widget.textInputAction,
+        validator: widget.validator,
+        onChanged: widget.onChanged,
+        inputFormatters: widget.inputFormatters,
       );
 
   InputDecoration _inputDecoration() => InputDecoration(
+        errorMaxLines: 2,
+        helperText: '',
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(
-            50,
-          ),
+          borderRadius: BorderRadius.circular(50),
         ),
         contentPadding: const EdgeInsets.symmetric(
           vertical: Sizes.large,
@@ -79,7 +80,6 @@ class _InkDateTextFormFieldState extends State<InkDateTextFormField> {
             width: 2,
           ),
         ),
-        errorStyle: const TextStyle(height: 0),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(50),
           borderSide: const BorderSide(
@@ -113,18 +113,21 @@ class _InkDateTextFormFieldState extends State<InkDateTextFormField> {
                 ),
               )
             : null,
-        suffix: widget.isPassword
-            ? Container(
-                margin: const EdgeInsets.only(top: 20),
-                child: IconButton(
-                  color: AppColors.darkGreen,
-                  constraints: const BoxConstraints(),
-                  icon: _isPasswordVisible
-                      ? const Icon(Icons.visibility)
-                      : const Icon(Icons.visibility_off),
-                  onPressed: () =>
-                      setState(() => _isPasswordVisible = !_isPasswordVisible),
-                ),
+        suffixIcon: widget.isPassword
+            ? IconButton(
+                padding: const EdgeInsets.only(right: Sizes.medium),
+                constraints: const BoxConstraints(),
+                icon: _isPasswordVisible
+                    ? const Icon(
+                        Icons.visibility,
+                        color: AppColors.darkGreen,
+                      )
+                    : const Icon(
+                        Icons.visibility_off,
+                        color: AppColors.darkGreen,
+                      ),
+                onPressed: () =>
+                    setState(() => _isPasswordVisible = !_isPasswordVisible),
               )
             : null,
       );

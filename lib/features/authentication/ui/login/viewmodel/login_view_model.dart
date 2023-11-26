@@ -1,12 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../gen/strings.g.dart';
-import '../../../../shared/exceptions/app_exception.dart';
-import '../../../../utils/extensions/string.dart';
-import '../../models/login_request_dto.dart';
-import '../../models/login_response_dto.dart';
-import '../../repository/authentication_repository.dart';
+import '../../../../../gen/strings.g.dart';
+import '../../../../../shared/exceptions/app_exception.dart';
+import '../../../../../utils/extensions/string.dart';
+import '../../../models/login_request_dto.dart';
+import '../../../models/login_response_dto.dart';
+import '../../../repository/authentication_repository.dart';
 import 'login_state.dart';
 
 class LoginViewModel extends StateNotifier<LoginState> {

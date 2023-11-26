@@ -15,7 +15,7 @@ SnackBar showInkDateSnackBar(final String message) => SnackBar(
         ),
       ),
       duration: const Duration(
-        milliseconds: 1000,
+        milliseconds: 2000,
       ),
       padding: const EdgeInsets.symmetric(
         horizontal: Sizes.small,

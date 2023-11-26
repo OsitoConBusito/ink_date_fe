@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../features/authentication/login_screen/screens/login_screen.dart';
-import '../features/authentication/sign_up/screens/admin_sign_up_screen.dart';
-import '../features/authentication/sign_up/screens/sign_up_screen.dart';
-import '../features/authentication/sign_up/screens/tattooist_sign_up_screen.dart';
+import '../features/authentication/ui/login/screens/login_screen.dart';
+import '../features/authentication/ui/sign_up/screens/confirm_email_code_screen.dart';
+import '../features/authentication/ui/sign_up/screens/screens.dart';
 import '../features/splash/screens/splash_screen.dart';
 
 final GoRouter appRouter = GoRouter(
@@ -39,6 +38,12 @@ final GoRouter appRouter = GoRouter(
               builder: (BuildContext context, GoRouterState state) =>
                   const TattooistSignUpScreen(),
             ),
+            GoRoute(
+              path: confirmEmailRoute,
+              name: confirmEmailRoute,
+              builder: (BuildContext context, GoRouterState state) =>
+                  const ConfirmationEmailCodeScreen(),
+            ),
           ],
         ),
       ],
@@ -51,3 +56,4 @@ const String loginRoute = 'login';
 const String signUpRoute = 'signUp';
 const String signUpAdminRoute = 'signUpAdmin';
 const String signUpTattooistRoute = 'signUpTattooist';
+const String confirmEmailRoute = 'confirmEmail';

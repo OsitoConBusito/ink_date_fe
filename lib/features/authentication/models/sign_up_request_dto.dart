@@ -8,9 +8,9 @@ class SignUpRequestDto {
     required this.password,
     required this.phoneNumber,
     required this.profile,
-    required this.studioAreas,
-    required this.studioName,
     required this.userName,
+    this.studioAreas,
+    this.studioName,
   });
 
   factory SignUpRequestDto.fromJson(Map<String, dynamic> json) =>
@@ -32,8 +32,8 @@ class SignUpRequestDto {
   final String password;
   final String phoneNumber;
   final Profile profile;
-  final int studioAreas;
-  final String studioName;
+  final int? studioAreas;
+  final String? studioName;
   final String userName;
 
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -42,7 +42,7 @@ class SignUpRequestDto {
         'fullName': fullName,
         'password': password,
         'phoneNumber': phoneNumber,
-        'profile': profile,
+        'profile': profile.name.toUpperCase(),
         'studioAreas': studioAreas,
         'studioName': studioName,
         'userName': userName,

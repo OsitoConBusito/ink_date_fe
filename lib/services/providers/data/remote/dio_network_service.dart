@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
-import '../../../../configs/app_configs.dart';
+import '../../../../main/app_env.dart';
 import '../../../../shared/exceptions/app_exception.dart';
 import '../../../../shared/globals.dart';
 import '../../../../shared/mixins/exception_handler_mixin.dart';
@@ -26,8 +26,9 @@ class DioNetworkService extends NetworkService with ExceptionHandlerMixin {
         baseUrl: baseUrl,
         headers: headers,
       );
+
   @override
-  String get baseUrl => RouteUrls.baseUrl;
+  String get baseUrl => EnvInfo.connectionString;
 
   @override
   Map<String, Object> get headers => <String, Object>{
@@ -51,7 +52,7 @@ class DioNetworkService extends NetworkService with ExceptionHandlerMixin {
   }) {
     final Future<Either<AppException, AppResponse>> res = handleException(
       () => dio.post(
-        endpoint,
+        '$baseUrl$endpoint',
         data: data,
       ),
       endpoint: endpoint,
@@ -66,7 +67,7 @@ class DioNetworkService extends NetworkService with ExceptionHandlerMixin {
   }) {
     final Future<Either<AppException, AppResponse>> res = handleException(
       () => dio.get(
-        endpoint,
+        '$baseUrl$endpoint',
         queryParameters: queryParameters,
       ),
       endpoint: endpoint,

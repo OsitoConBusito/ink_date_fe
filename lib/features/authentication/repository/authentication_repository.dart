@@ -3,8 +3,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../configs/app_configs.dart';
-import '../../../main/app_env.dart';
+import '../../../services/providers/data/remote/dio_network_service.dart';
 import '../../../shared/exceptions/app_exception.dart';
+import '../../../shared/models/response.dart';
+import '../models/confirm_code_request_dto.dart';
 import '../models/login_request_dto.dart';
 import '../models/login_response_dto.dart';
 import '../models/sign_up_request_dto.dart';
@@ -16,50 +18,82 @@ final Provider<AuthenticationRepository> authenticationRepositoryProvider =
 );
 
 class AuthenticationRepository {
-  final Dio _dio = Dio();
+  final DioNetworkService _dioNetworkService = DioNetworkService(Dio());
 
   Future<Either<AppException, LoginResponseDto>> login(
     LoginRequestDto loginRequestDto,
   ) async {
-    try {
-      final Response<dynamic> response = await _dio.post(
-        '${EnvInfo.connectionString}${RouteUrls.login}',
-        data: loginRequestDto.toJson(),
-      );
+    final Either<AppException, AppResponse> response =
+        await _dioNetworkService.post(
+      RouteUrls.login,
+      data: loginRequestDto.toJson(),
+    );
 
-      final LoginResponseDto loginResponse =
-          LoginResponseDto.fromJson(response.data);
-
-      return Right<AppException, LoginResponseDto>(loginResponse);
-    } on DioException catch (e) {
-      return Left<AppException, LoginResponseDto>(
-        AppException(
-          message: e.message,
-          statusCode: e.response?.statusCode,
-          identifier: null,
-        ),
-      );
-    }
+    return response.fold(
+      Left.new,
+      (AppResponse r) => Right<AppException, LoginResponseDto>(
+        LoginResponseDto.fromJson(r.data as Map<String, dynamic>),
+      ),
+    );
   }
 
   Future<Either<AppException, SignUpResponseDto>> signUp(
     SignUpRequestDto signUpRequestDto,
   ) async {
-    try {
-      final Response<dynamic> response =
-          await _dio.post('${EnvInfo.connectionString}${RouteUrls.signUp}');
+    final Either<AppException, AppResponse> response =
+        await _dioNetworkService.post(
+      RouteUrls.signUp,
+      data: signUpRequestDto.toJson(),
+    );
 
-      final SignUpResponseDto signUpRequestDto =
-          SignUpResponseDto.fromJson(response.data);
-      return Right<AppException, SignUpResponseDto>(signUpRequestDto);
-    } on DioException catch (e) {
-      return Left<AppException, SignUpResponseDto>(
+    return response.fold(
+      (AppException appException) => Left<AppException, SignUpResponseDto>(
         AppException(
-          message: e.message,
-          statusCode: e.response?.statusCode,
-          identifier: null,
+          message: appException.message,
+          statusCode: appException.statusCode,
+          identifier: appException.identifier,
         ),
-      );
-    }
+      ),
+      (AppResponse r) => Right<AppException, SignUpResponseDto>(
+        SignUpResponseDto.fromJson(r.data as Map<String, dynamic>),
+      ),
+    );
+  }
+
+  Future<Either<AppException, bool>> confirmCode({
+    required ConfirmCodeRequestDto confirmCodeRequestDto,
+  }) async {
+    final Either<AppException, AppResponse> response =
+        await _dioNetworkService.post(
+      RouteUrls.confirmSignUp,
+      data: confirmCodeRequestDto.toJson(),
+    );
+
+    return response.fold(
+      (AppException appException) => Left<AppException, bool>(
+        AppException(
+          message: appException.message,
+          statusCode: appException.statusCode,
+          identifier: appException.identifier,
+        ),
+      ),
+      (AppResponse r) => const Right<AppException, bool>(true),
+    );
+  }
+
+  Future<Either<AppException, bool>> resendCode({required String email}) async {
+    final Either<AppException, AppResponse> response = await _dioNetworkService
+        .post(RouteUrls.resend, data: <String, String>{'userName': email});
+
+    return response.fold(
+      (AppException appException) => Left<AppException, bool>(
+        AppException(
+          message: appException.message,
+          statusCode: appException.statusCode,
+          identifier: appException.identifier,
+        ),
+      ),
+      (AppResponse r) => const Right<AppException, bool>(true),
+    );
   }
 }

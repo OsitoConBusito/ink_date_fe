@@ -16,5 +16,5 @@ extension StringExtension on String {
       ).hasMatch(this);
 
   bool get isValidPassword =>
-      RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$').hasMatch(this);
+      RegExp(r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*\W).{8,}$').hasMatch(this);
 }

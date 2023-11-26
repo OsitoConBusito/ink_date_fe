@@ -18,13 +18,30 @@
     "full_name": "Nombre completo",
     "verify_password": "Verificar contraseña",
     "have_an_account": "¿Ya tienes una cuenta?",
+    "not_matched_password": "Las contraseñas no coinciden",
+    "not_valid_password" : "La contraseña debe tener al menos una mayúscula, un número, un símbolo y al menos 8 caracteres",
+    "code_sent": "Te hemos enviado un código de confirmación a tu correo electrónico",
+    "type_code": "Ingresa el código aquí",
+    "resend_code": "Reenviar",
+    "code": "Código",
+    "code_hint": "123456",
+    "code_not_sent": "¿No recibiste el código?",
+    "success_sign_up":"¡Hemos registrado tu correo exitosamente!",
+    "succes_resend_code": "",
+    "success_sign_up_description":"Te invitamos a acceder a tu aplicación Ink Date a través de tu correo registrado",
     "admin": {
       "hint_studio_email": "tu_estudio@gmail.com",
       "studio_email": "Email del estudio asociado",
       "places": "Espacios",
       "hint_studio_name": "Estudio Best",
       "studio_name": "Nombre del estudio",
-      "sign_up_as_admin": "Regístrate como administrador"
+      "sign_up_as_admin": "Regístrate como administrador",
+      "error": "Ocurrió un error en el registro por favor intentalo de nuevo",
+      "error_code": "Código incorrecto"
+    },
+    "tattooist": {
+      "sign_up_as_tattooist": "Regístrate como tatuador"
+
     }
   },
   "login": {

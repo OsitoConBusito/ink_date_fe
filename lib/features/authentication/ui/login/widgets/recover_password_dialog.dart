@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../../gen/strings.g.dart';
-import '../../../../shared/widgets/ink_date_elevated_button.dart';
-import '../../../../shared/widgets/ink_date_text_form_field.dart';
-import '../../../../theme/theme.dart';
+import '../../../../../gen/strings.g.dart';
+import '../../../../../shared/widgets/ink_date_elevated_button.dart';
+import '../../../../../shared/widgets/ink_date_text_form_field.dart';
+import '../../../../../theme/theme.dart';
 
 class RecoverPasswordDialog extends StatefulWidget {
   const RecoverPasswordDialog({
