@@ -30,7 +30,13 @@ class AuthenticationRepository {
     );
 
     return response.fold(
-      Left.new,
+      (AppException appException) => Left<AppException, LoginResponseDto>(
+        AppException(
+          message: appException.message,
+          statusCode: appException.statusCode,
+          identifier: appException.identifier,
+        ),
+      ),
       (AppResponse r) => Right<AppException, LoginResponseDto>(
         LoginResponseDto.fromJson(r.data as Map<String, dynamic>),
       ),

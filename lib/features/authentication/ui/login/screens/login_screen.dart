@@ -69,147 +69,142 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
       showInkDateSnackBar(t.login.error);
     }
 
+    if (loginState.loginStatus == LoginStatus.success) {
+      print('navigate to main');
+    }
+
     final Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      body: LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) => Stack(
-          alignment: Alignment.topCenter,
-          children: <Widget>[
-            SignUpBackground(
-              width: constraints.maxWidth,
-              child: Padding(
-                padding: const EdgeInsets.all(Sizes.large),
-                child: SingleChildScrollView(
-                  child: ConstrainedBox(
-                    constraints:
-                        BoxConstraints(minHeight: constraints.maxHeight),
-                    child: IntrinsicHeight(
-                      child: Form(
-                        key: _formKey,
-                        child: Column(
-                          children: <Widget>[
-                            const Spacer(),
-                            const SizedBox(
-                              height: Sizes.xLarge,
-                            ),
-                            SvgPicture.asset(
-                              AppImages.inkDateLogoName,
-                              colorFilter: const ColorFilter.mode(
-                                AppColors.darkGreen,
-                                BlendMode.srcIn,
-                              ),
-                              width: size.width * 0.4,
-                            ),
-                            const Spacer(),
-                            const SizedBox(
-                              height: Sizes.xLarge,
-                            ),
-                            ShakeWidget(
-                              // key: shakeEmailKey,
-                              shakeOffset: 5,
-                              child: InkDateTextFormField(
-                                hintText: t.login.hint_email,
-                                keyboardType: TextInputType.emailAddress,
-                                icon: Icons.alternate_email,
-                                labelText: t.email,
-                                textInputAction: TextInputAction.next,
-                                textEditingController: _emailController,
-                                onChanged: loginViewModel.onChangeEmail,
-                                validator: (String? emailText) {
-                                  if (emailText == null || emailText.isEmpty) {
-                                    return t.mandatory_field;
-                                  }
-                                  if (!emailText.isValidEmail) {
-                                    return t.not_valid_email;
-                                  }
-                                  return null;
-                                },
-                              ),
-                            ),
-                            const SizedBox(
-                              height: Sizes.medium,
-                            ),
-                            ShakeWidget(
-                              // key: shakePasswordKey,
-                              shakeOffset: 5,
-                              child: InkDateTextFormField(
-                                hintText: t.login.hint_password,
-                                icon: Icons.lock,
-                                isPassword: true,
-                                keyboardType: TextInputType.visiblePassword,
-                                labelText: t.password,
-                                textEditingController: _passwordController,
-                                validator: (String? text) {
-                                  if (text == null || text.isEmpty) {
-                                    return t.mandatory_field;
-                                    // shakePasswordKey.currentState?.shake();
-                                  }
-                                  return null;
-                                },
-                              ),
-                            ),
-                            const SizedBox(
-                              height: Sizes.medium,
-                            ),
-                            InkDateElevatedButton(
-                              text: t.login.login,
-                              textColor: AppColors.darkGreen,
-                              onTap: () async {
-                                if (_formKey.currentState!.validate()) {
-                                  FocusManager.instance.primaryFocus?.unfocus();
-
-                                  await ref.read(loginProvider.notifier).login(
-                                        _emailController.text.trim(),
-                                        _passwordController.text.trim(),
-                                      );
-                                }
-                              },
-                            ),
-                            const Spacer(),
-                            const SizedBox(
-                              height: Sizes.xLarge,
-                            ),
-                            InkDateTextButton(
-                              text: t.login.recover_password,
-                              onPressed: () async {
-                                // context.pushReplacementNamed(confirmEmailRoute);
-
-                                // await showDialog(
-                                //   context: context,
-                                //   builder: (BuildContext context) =>
-                                //       RecoverPasswordDialog(
-                                //     width: constraints.maxWidth,
-                                //   ),
-                                // );
-                              },
-                            ),
-                            const SizedBox(
-                              height: Sizes.small,
-                            ),
-                            InkDateTextButton(
-                              isBold: true,
-                              text: t.sign_up.sign_up,
-                              onPressed: () async {
-                                await context.pushNamed(signUpRoute);
-                              },
-                            ),
-                            const Spacer(),
-                            const SizedBox(
-                              height: Sizes.large,
-                            ),
-                          ],
-                        ),
+      resizeToAvoidBottomInset: false,
+      body: Stack(
+        alignment: Alignment.topCenter,
+        children: <Widget>[
+          SignUpBackground(
+            width: MediaQuery.sizeOf(context).width,
+            child: Padding(
+              padding: const EdgeInsets.all(Sizes.large),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: <Widget>[
+                    const Spacer(),
+                    const SizedBox(
+                      height: Sizes.xLarge,
+                    ),
+                    SvgPicture.asset(
+                      AppImages.inkDateLogoName,
+                      colorFilter: const ColorFilter.mode(
+                        AppColors.darkGreen,
+                        BlendMode.srcIn,
+                      ),
+                      width: size.width * 0.4,
+                    ),
+                    const Spacer(),
+                    const SizedBox(
+                      height: Sizes.xLarge,
+                    ),
+                    ShakeWidget(
+                      // key: shakeEmailKey,
+                      shakeOffset: 5,
+                      child: InkDateTextFormField(
+                        hintText: t.login.hint_email,
+                        keyboardType: TextInputType.emailAddress,
+                        icon: Icons.alternate_email,
+                        labelText: t.email,
+                        textInputAction: TextInputAction.next,
+                        textEditingController: _emailController,
+                        onChanged: loginViewModel.onChangeEmail,
+                        validator: (String? emailText) {
+                          if (emailText == null || emailText.isEmpty) {
+                            return t.mandatory_field;
+                          }
+                          if (!emailText.isValidEmail) {
+                            return t.not_valid_email;
+                          }
+                          return null;
+                        },
                       ),
                     ),
-                  ),
+                    const SizedBox(
+                      height: Sizes.medium,
+                    ),
+                    ShakeWidget(
+                      // key: shakePasswordKey,
+                      shakeOffset: 5,
+                      child: InkDateTextFormField(
+                        hintText: t.login.hint_password,
+                        icon: Icons.lock,
+                        isPassword: true,
+                        keyboardType: TextInputType.visiblePassword,
+                        labelText: t.password,
+                        textEditingController: _passwordController,
+                        validator: (String? text) {
+                          if (text == null || text.isEmpty) {
+                            return t.mandatory_field;
+                            // shakePasswordKey.currentState?.shake();
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    const SizedBox(
+                      height: Sizes.medium,
+                    ),
+                    InkDateElevatedButton(
+                      text: t.login.login,
+                      textColor: AppColors.darkGreen,
+                      onTap: () async {
+                        if (_formKey.currentState!.validate()) {
+                          FocusManager.instance.primaryFocus?.unfocus();
+
+                          await loginViewModel.login(
+                            email: _emailController.text.trim(),
+                            password: _passwordController.text.trim(),
+                          );
+                        }
+                      },
+                    ),
+                    const Spacer(),
+                    const SizedBox(
+                      height: Sizes.xLarge,
+                    ),
+                    InkDateTextButton(
+                      text: t.login.recover_password,
+                      onPressed: () async {
+                        // context.pushReplacementNamed(confirmEmailRoute);
+
+                        // await showDialog(
+                        //   context: context,
+                        //   builder: (BuildContext context) =>
+                        //       RecoverPasswordDialog(
+                        //     width: constraints.maxWidth,
+                        //   ),
+                        // );
+                      },
+                    ),
+                    const SizedBox(
+                      height: Sizes.small,
+                    ),
+                    InkDateTextButton(
+                      isBold: true,
+                      text: t.sign_up.sign_up,
+                      onPressed: () async {
+                        await context.pushNamed(signUpRoute);
+                      },
+                    ),
+                    const Spacer(),
+                    const SizedBox(
+                      height: Sizes.large,
+                    ),
+                  ],
                 ),
               ),
             ),
-            if (loginState.loginStatus == LoginStatus.loading)
-              const LoadingScreen()
-          ],
-        ),
+          ),
+          if (loginState.loginStatus == LoginStatus.loading)
+            const LoadingScreen()
+        ],
       ),
     );
   }

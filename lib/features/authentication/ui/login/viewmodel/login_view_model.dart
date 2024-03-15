@@ -28,7 +28,10 @@ class LoginViewModel extends StateNotifier<LoginState> {
     state = state.copyWith(email: email, emailError: '');
   }
 
-  Future<void> login(String email, String password) async {
+  Future<void> login({
+    required String email,
+    required String password,
+  }) async {
     state = state.copyWith(loginStatus: LoginStatus.loading);
     try {
       final Either<AppException, LoginResponseDto> loginResponse =
