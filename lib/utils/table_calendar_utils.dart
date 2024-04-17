@@ -30,7 +30,7 @@ final Map<DateTime, List<Event>> _kEventSource = <DateTime, List<Event>>{
         List<Event>.generate(
       item % 4 + 1,
       (final int index) => Event('Event $item | ${index + 1}'),
-    )
+    ),
 }..addAll(
     <DateTime, List<Event>>{
       kToday: <Event>[

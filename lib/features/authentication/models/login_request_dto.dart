@@ -1,3 +1,5 @@
+import '../../../utils/extensions/map.dart';
+
 class LoginRequestDto {
   LoginRequestDto({
     required this.userName,
@@ -6,15 +8,15 @@ class LoginRequestDto {
 
   factory LoginRequestDto.fromJson(Map<String, dynamic> json) =>
       LoginRequestDto(
-        userName: json['userName'],
-        password: json['password'],
+        password: json.getString('password')!,
+        userName: json.getString('userName')!,
       );
 
-  final String userName;
   final String password;
+  final String userName;
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'userName': userName,
         'password': password,
+        'userName': userName,
       };
 }

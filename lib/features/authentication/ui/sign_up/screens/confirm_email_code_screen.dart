@@ -137,7 +137,7 @@ class ConfirmationEmailCodeScreen extends ConsumerWidget {
               ),
             ),
             if (signUpState.signUpStatus == SignUpStatus.loading)
-              const LoadingScreen()
+              const LoadingScreen(),
           ],
         ),
       ),

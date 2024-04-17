@@ -57,13 +57,13 @@ class _InkDateTextFormFieldState extends State<InkDateTextFormField> {
       );
 
   InputDecoration _inputDecoration() => InputDecoration(
-        errorMaxLines: 2,
+        errorMaxLines: 3,
         helperText: '',
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(50),
         ),
         contentPadding: const EdgeInsets.symmetric(
-          vertical: Sizes.large,
+          vertical: Sizes.small,
           horizontal: Sizes.large,
         ),
         enabledBorder: OutlineInputBorder(

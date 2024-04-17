@@ -57,7 +57,7 @@ class _RecoverPasswordDialogState extends State<RecoverPasswordDialog> {
                         height: Sizes.xLarge + Sizes.medium,
                       ),
                       const Text(
-                        'Enviaremos un correo electronico para la recuperacion de tu contrasena',
+                        '''Enviaremos un correo electronico para la recuperacion de tu contraseña''',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 18,

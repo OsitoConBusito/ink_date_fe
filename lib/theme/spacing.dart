@@ -1,11 +1,22 @@
 part of com.ink_date.theme;
 
 class Sizes {
+  /// large = 24
   static const double large = 24;
+
+  /// medium = 16
   static const double medium = 16;
+
+  /// small = 8
   static const double small = 8;
+
+  /// xLarge = 32
   static const double xLarge = 32;
+
+  /// xxLarge = 64
   static const double xxLarge = 64;
+
+  /// xSmall = 4
   static const double xSmall = 4;
 }
 

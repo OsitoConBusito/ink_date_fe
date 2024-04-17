@@ -41,8 +41,6 @@ class _SignUpTattooistScreenState extends ConsumerState<TattooistSignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final SignUpState signUpState = ref.watch(signUpProvider);
-
     ref.listen(
       signUpProvider,
       (SignUpState? previous, SignUpState next) async {
@@ -162,7 +160,7 @@ class _SignUpTattooistScreenState extends ConsumerState<TattooistSignUpScreen> {
                                 }
                               },
                             ),
-                          )
+                          ),
                         ],
                       ),
                       const SizedBox(height: Sizes.xLarge),

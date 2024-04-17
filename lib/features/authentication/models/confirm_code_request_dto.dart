@@ -1,3 +1,5 @@
+import '../../../utils/extensions/map.dart';
+
 class ConfirmCodeRequestDto {
   ConfirmCodeRequestDto({
     this.userName,
@@ -6,8 +8,8 @@ class ConfirmCodeRequestDto {
 
   factory ConfirmCodeRequestDto.fromJson(Map<String, dynamic> json) =>
       ConfirmCodeRequestDto(
-        userName: json['userName'],
-        code: json['code'],
+        userName: json.getString('userName'),
+        code: json.getString('code'),
       );
   final String? userName;
   final String? code;

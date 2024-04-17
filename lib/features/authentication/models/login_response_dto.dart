@@ -37,7 +37,7 @@ class LoginResponseDto {
 
   final AuthenticationResult authenticationResult;
   final String phoneNumber;
-  final Photo photo;
+  final Photo? photo;
   final int studioCode;
   final String profile;
   final String status;
@@ -53,7 +53,7 @@ class LoginResponseDto {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'AuthenticationResult': authenticationResult.toJson(),
         'phoneNumber': phoneNumber,
-        'photo': photo.toJson(),
+        'photo': photo?.toJson(),
         'studioCode': studioCode,
         'profile': profile,
         'status': status,
