@@ -17,6 +17,7 @@ import '../../../../../utils/show_loading.dart';
 import '../provider/login_provider.dart';
 import '../viewmodel/login_state.dart';
 import '../viewmodel/login_view_model.dart';
+import '../widgets/recover_password_dialog.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -176,13 +177,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
                   onPressed: () async {
                     // context.pushReplacementNamed(confirmEmailRoute);
 
-                    // await showDialog(
-                    //   context: context,
-                    //   builder: (BuildContext context) =>
-                    //       RecoverPasswordDialog(
-                    //     width: constraints.maxWidth,
-                    //   ),
-                    // );
+                    await showDialog(
+                      context: context,
+                      builder: (BuildContext context) =>
+                          const RecoverPasswordDialog(),
+                    );
                   },
                 ),
                 const SizedBox(

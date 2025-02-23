@@ -8,11 +8,8 @@ import '../../../../../theme/theme.dart';
 
 class RecoverPasswordDialog extends StatefulWidget {
   const RecoverPasswordDialog({
-    required this.width,
     super.key,
   });
-
-  final double width;
 
   @override
   State<RecoverPasswordDialog> createState() => _RecoverPasswordDialogState();
@@ -35,7 +32,6 @@ class _RecoverPasswordDialogState extends State<RecoverPasswordDialog> {
 
   @override
   Widget build(BuildContext context) => Dialog(
-        backgroundColor: AppColors.backgroundGrey.withOpacity(0.9),
         elevation: 3,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
@@ -107,14 +103,12 @@ class _RecoverPasswordDialogState extends State<RecoverPasswordDialog> {
                   ),
                 ),
                 Positioned(
-                  left: widget.width * 0.28,
+                  left: MediaQuery.sizeOf(context).width * 0.28,
                   top: -50,
                   child: CircleAvatar(
                     backgroundColor: AppColors.beige,
                     radius: 50,
-                    child: SvgPicture.asset(
-                      'assets/images/ink_date_logo.svg',
-                    ),
+                    child: SvgPicture.asset(AppImages.logoInkDate),
                   ),
                 ),
               ],

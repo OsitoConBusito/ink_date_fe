@@ -6,6 +6,6 @@ extension ObjectExtension on Object {
 
   List<T> withConverterList<T>({required ConvertFunction<T> fromJson}) =>
       (this as List<dynamic>)
-          .map((dynamic e) => fromJson(e as Map<String, dynamic>) as T)
+          .map((e) => fromJson(e as Map<String, dynamic>) as T)
           .toList();
 }
